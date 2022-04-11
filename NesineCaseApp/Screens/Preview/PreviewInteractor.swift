@@ -12,20 +12,23 @@
 
 import UIKit
 
-protocol PreviewBusinessLogic
-{
+protocol PreviewBusinessLogic {
+    func getImage()
 }
 
-protocol PreviewDataStore
-{
-  //var name: String { get set }
+protocol PreviewDataStore {
+    var image: UIImage? { get set}
+    
 }
 
-class PreviewInteractor: PreviewBusinessLogic, PreviewDataStore
-{
-  var presenter: PreviewPresentationLogic?
-  //var name: String = ""
-  
-  // MARK: Do something
-  
+class PreviewInteractor: PreviewBusinessLogic, PreviewDataStore {
+    var presenter: PreviewPresentationLogic?
+    var image: UIImage?
+    
+    // MARK: Protocol
+    func getImage() {
+        if let image = image {
+            self.presenter?.presentImage(image: image)
+        }
+    }
 }

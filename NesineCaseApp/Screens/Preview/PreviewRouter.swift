@@ -12,49 +12,17 @@
 
 import UIKit
 
-@objc protocol PreviewRoutingLogic
-{
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
+protocol PreviewRoutingLogic : AnyObject {
+    
 }
 
-protocol PreviewDataPassing
-{
-  var dataStore: PreviewDataStore? { get }
+protocol PreviewDataPassing {
+    var dataStore: PreviewDataStore? { get }
 }
 
-class PreviewRouter: NSObject, PreviewRoutingLogic, PreviewDataPassing
-{
-  weak var viewController: PreviewViewController?
-  var dataStore: PreviewDataStore?
-  
-  // MARK: Routing
-  
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
-  //{
-  //  if let segue = segue {
-  //    let destinationVC = segue.destination as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //  } else {
-  //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-  //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-  //  }
-  //}
-
-  // MARK: Navigation
-  
-  //func navigateToSomewhere(source: PreviewViewController, destination: SomewhereViewController)
-  //{
-  //  source.show(destination, sender: nil)
-  //}
-  
-  // MARK: Passing data
-  
-  //func passDataToSomewhere(source: PreviewDataStore, destination: inout SomewhereDataStore)
-  //{
-  //  destination.name = source.name
-  //}
+class PreviewRouter: NSObject, PreviewRoutingLogic, PreviewDataPassing {
+    weak var viewController: PreviewViewController?
+    var dataStore: PreviewDataStore?
+    
+    
 }
