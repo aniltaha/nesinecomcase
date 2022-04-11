@@ -182,6 +182,8 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
         self.listViewModel = listViewModel
         DispatchQueue.main.async {
             self.collectionView.reloadData()
+            self.collectionView.layoutIfNeeded()
+
         }
     }
     
@@ -189,6 +191,8 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
         self.imageListModel = imageListModel
         DispatchQueue.main.async {
             self.collectionView.reloadData()
+            self.collectionView.layoutIfNeeded()
+
         }
     }
 }
@@ -205,6 +209,8 @@ extension SearchViewController: UISearchResultsUpdating {
                 self.imageListModel?.xLargeSizeSection.removeAll()
                 self.imageListModel?.xxLargeSizeSection.removeAll()
                 self.collectionView.reloadData()
+                self.collectionView.layoutIfNeeded()
+
             }
             return
         }
@@ -239,16 +245,16 @@ extension SearchViewController: UICollectionViewDelegateFlowLayout, UICollection
         cell.backgroundColor = .gray
         var image = UIImage.init()
         if let imageListModel = imageListModel {
-            switch getSection(position: indexPath.row) {
-            case .FIRST:
+            switch indexPath.section {
+            case 0:
                 image = imageListModel.smallSizeSection[indexPath.row]
-            case .SECOND:
+            case 1:
                 image = imageListModel.largeSizeSection[indexPath.row]
-            case .THIRD:
+            case 2:
                 image = imageListModel.xLargeSizeSection[indexPath.row]
-            case .FOURTH:
+            case 3:
                 image = imageListModel.xxLargeSizeSection[indexPath.row]
-            case .DEFAULT:
+            default:
                 print("HATA! RESIM BULUNAMADI! SVC 252")
             }
         }

@@ -12,18 +12,17 @@
 
 import UIKit
 
-protocol PreviewPresentationLogic
-{
-  func presentSomething(response: Preview.Something.Response)
+protocol PreviewPresentationLogic {
+    func presentImage(image: UIImage)
 }
 
-class PreviewPresenter: PreviewPresentationLogic
-{
-  weak var viewController: PreviewDisplayLogic?
-  
-  // MARK: Do something
-  
-  func presentSomething(response: Preview.Something.Response)
-  {
-  }
+class PreviewPresenter: PreviewPresentationLogic {
+    
+    weak var viewController: PreviewDisplayLogic?
+    
+    // MARK: Protocol
+    func presentImage(image: UIImage) {
+        viewController?.displayImage(image: image)
+    }
+    
 }

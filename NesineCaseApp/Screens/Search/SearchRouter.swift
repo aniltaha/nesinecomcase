@@ -33,7 +33,7 @@ class SearchRouter: NSObject, SearchRoutingLogic, SearchDataPassing
     func routeToPreviewPage(with image: UIImage) {
         let destinationVC = PreviewViewController()
         var destinationDS = destinationVC.router!.dataStore!
-        passModelToPreview(image: image, destination: destinationDS)
+        passModelToPreview(image: image, destination: &destinationDS)
         navigateToPreview(source: viewController!, destination: destinationVC)
     }
 
@@ -46,7 +46,8 @@ class SearchRouter: NSObject, SearchRoutingLogic, SearchDataPassing
   
   // MARK: Passing data
   
-    func passModelToPreview(image: UIImage, destination: PreviewDataStore) {
-        
+    func passModelToPreview(image: UIImage, destination: inout PreviewDataStore) {
+        destination.image = image
+        //aslında değişmiyor ama inout yolladım
     }
 }
