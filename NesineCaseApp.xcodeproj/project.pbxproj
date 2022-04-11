@@ -25,6 +25,11 @@
 		6B2BEAB82801B93500BD4A38 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2BEAB72801B93500BD4A38 /* NetworkManager.swift */; };
 		6B2BEABA2801C19500BD4A38 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2BEAB92801C19500BD4A38 /* StringExtension.swift */; };
 		6B62E6B12804C8E000B27F59 /* FileCategoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B62E6B02804C8E000B27F59 /* FileCategoryHeaderView.swift */; };
+		6B62E6BB2804D5BE00B27F59 /* PreviewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B62E6B52804D5BE00B27F59 /* PreviewPresenter.swift */; };
+		6B62E6BD2804D5BE00B27F59 /* PreviewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B62E6B72804D5BE00B27F59 /* PreviewRouter.swift */; };
+		6B62E6BE2804D5BE00B27F59 /* PreviewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B62E6B82804D5BE00B27F59 /* PreviewModels.swift */; };
+		6B62E6BF2804D5BE00B27F59 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B62E6B92804D5BE00B27F59 /* PreviewViewController.swift */; };
+		6B62E6C02804D5BE00B27F59 /* PreviewInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B62E6BA2804D5BE00B27F59 /* PreviewInteractor.swift */; };
 		D0BA5E05EB522BD289295FC6 /* Pods_NesineCaseApp_NesineCaseAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9F3532D64B53A8836BA4C3C /* Pods_NesineCaseApp_NesineCaseAppUITests.framework */; };
 		FE8602318F5FF7A4A69D87FB /* Pods_NesineCaseAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA33B5716726782355E66630 /* Pods_NesineCaseAppTests.framework */; };
 /* End PBXBuildFile section */
@@ -72,6 +77,11 @@
 		6B2BEAB72801B93500BD4A38 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		6B2BEAB92801C19500BD4A38 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		6B62E6B02804C8E000B27F59 /* FileCategoryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCategoryHeaderView.swift; sourceTree = "<group>"; };
+		6B62E6B52804D5BE00B27F59 /* PreviewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewPresenter.swift; sourceTree = "<group>"; };
+		6B62E6B72804D5BE00B27F59 /* PreviewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewRouter.swift; sourceTree = "<group>"; };
+		6B62E6B82804D5BE00B27F59 /* PreviewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewModels.swift; sourceTree = "<group>"; };
+		6B62E6B92804D5BE00B27F59 /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
+		6B62E6BA2804D5BE00B27F59 /* PreviewInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewInteractor.swift; sourceTree = "<group>"; };
 		7009EB980B2ACF8118BEB5D7 /* Pods-NesineCaseAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NesineCaseAppTests.release.xcconfig"; path = "Target Support Files/Pods-NesineCaseAppTests/Pods-NesineCaseAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		8B68C600136DE7514A7D136A /* Pods-NesineCaseApp-NesineCaseAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NesineCaseApp-NesineCaseAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-NesineCaseApp-NesineCaseAppUITests/Pods-NesineCaseApp-NesineCaseAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A9F3532D64B53A8836BA4C3C /* Pods_NesineCaseApp_NesineCaseAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NesineCaseApp_NesineCaseAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -175,6 +185,7 @@
 		6B2BEAA22801AA1800BD4A38 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				6B62E6B42804D5A300B27F59 /* Preview */,
 				6B2BEAA52801AAB500BD4A38 /* Search */,
 			);
 			path = Screens;
@@ -224,6 +235,18 @@
 				6B2BEAB72801B93500BD4A38 /* NetworkManager.swift */,
 			);
 			path = Manager;
+			sourceTree = "<group>";
+		};
+		6B62E6B42804D5A300B27F59 /* Preview */ = {
+			isa = PBXGroup;
+			children = (
+				6B62E6B52804D5BE00B27F59 /* PreviewPresenter.swift */,
+				6B62E6B72804D5BE00B27F59 /* PreviewRouter.swift */,
+				6B62E6B82804D5BE00B27F59 /* PreviewModels.swift */,
+				6B62E6B92804D5BE00B27F59 /* PreviewViewController.swift */,
+				6B62E6BA2804D5BE00B27F59 /* PreviewInteractor.swift */,
+			);
+			path = Preview;
 			sourceTree = "<group>";
 		};
 		B795F6391E66BFFC3C4C9BB2 /* Pods */ = {
@@ -481,8 +504,13 @@
 				6B2BEAB82801B93500BD4A38 /* NetworkManager.swift in Sources */,
 				6B2BEA7328019D5A00BD4A38 /* AppDelegate.swift in Sources */,
 				6B2BEABA2801C19500BD4A38 /* StringExtension.swift in Sources */,
+				6B62E6BE2804D5BE00B27F59 /* PreviewModels.swift in Sources */,
+				6B62E6BB2804D5BE00B27F59 /* PreviewPresenter.swift in Sources */,
 				6B2BEAB12801AB5A00BD4A38 /* SearchViewController.swift in Sources */,
+				6B62E6C02804D5BE00B27F59 /* PreviewInteractor.swift in Sources */,
+				6B62E6BF2804D5BE00B27F59 /* PreviewViewController.swift in Sources */,
 				6B2BEAB22801AB5A00BD4A38 /* SearchInteractor.swift in Sources */,
+				6B62E6BD2804D5BE00B27F59 /* PreviewRouter.swift in Sources */,
 				6B2BEAAF2801AB5A00BD4A38 /* SearchRouter.swift in Sources */,
 				6B62E6B12804C8E000B27F59 /* FileCategoryHeaderView.swift in Sources */,
 				6B2BEA7528019D5A00BD4A38 /* SceneDelegate.swift in Sources */,

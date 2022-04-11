@@ -12,9 +12,10 @@
 
 import UIKit
 
-@objc protocol SearchRoutingLogic
+protocol SearchRoutingLogic : AnyObject
 {
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
+    func routeToPreviewPage(with image: UIImage)
+    
 }
 
 protocol SearchDataPassing
@@ -29,32 +30,23 @@ class SearchRouter: NSObject, SearchRoutingLogic, SearchDataPassing
   
   // MARK: Routing
   
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
-  //{
-  //  if let segue = segue {
-  //    let destinationVC = segue.destination as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //  } else {
-  //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-  //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-  //  }
-  //}
+    func routeToPreviewPage(with image: UIImage) {
+        let destinationVC = PreviewViewController()
+        var destinationDS = destinationVC.router!.dataStore!
+        passModelToPreview(image: image, destination: destinationDS)
+        navigateToPreview(source: viewController!, destination: destinationVC)
+    }
 
   // MARK: Navigation
   
-  //func navigateToSomewhere(source: SearchViewController, destination: SomewhereViewController)
-  //{
-  //  source.show(destination, sender: nil)
-  //}
+    func navigateToPreview(source: SearchViewController, destination: PreviewViewController){
+        source.show(destination, sender: nil)
+    }
+  
   
   // MARK: Passing data
   
-  //func passDataToSomewhere(source: SearchDataStore, destination: inout SomewhereDataStore)
-  //{
-  //  destination.name = source.name
-  //}
+    func passModelToPreview(image: UIImage, destination: PreviewDataStore) {
+        
+    }
 }
