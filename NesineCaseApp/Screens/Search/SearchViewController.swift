@@ -16,7 +16,7 @@ protocol SearchDisplayLogic: AnyObject
 {
     func displaySearchList(listViewModel: [SearchModel.ResultModel])
     func displaySearchList(imageListModel: SearchModel.ImageModel)
-
+    
 }
 
 class SearchViewController: UIViewController, SearchDisplayLogic {
@@ -28,7 +28,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     private var imageListModel: SearchModel.ImageModel?
     let headerId = "headerId"
     let categoryHeaderId = "categoryHeaderId"
-
+    
     fileprivate let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -65,7 +65,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
         return section
     }
     
-
+    
     
     
     // MARK: Object lifecycle
@@ -79,7 +79,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
         super.init(coder: aDecoder)
         setup()
     }
-   
+    
     // MARK: Setup
     
     private func setup() {
@@ -113,9 +113,9 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = true
-
+        
     }
-
+    
     func setupCollectionView() {
         view.addSubview(collectionView)
         collectionView.backgroundColor = .white
@@ -128,23 +128,52 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
         collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,
                                                constant: -20).isActive = true
         collectionView.collectionViewLayout = createCompositionalLayout()
-
+        
         
         collectionView.delegate = self
         collectionView.dataSource = self
     }
     
     private func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
-
+        
         return UICollectionViewCompositionalLayout { (sectionNumber, env) -> NSCollectionLayoutSection? in
-
-         switch sectionNumber {
-
-         case 0: return self.secondLayoutSection()
-         case 1: return self.secondLayoutSection()
-         default: return self.secondLayoutSection()
-         }
-       }
+            
+            switch sectionNumber {
+                
+            case 0: return self.secondLayoutSection()
+            case 1: return self.secondLayoutSection()
+            default: return self.secondLayoutSection()
+            }
+        }
+    }
+    
+    private func getSection(position: Int) -> SearchModel.Sections {
+        
+        if let imageListModel = imageListModel {
+            let smallSizeCount = imageListModel.smallSizeSection.count
+            let largeSizeCount = imageListModel.largeSizeSection.count
+            let xLargeSizeCount = imageListModel.xLargeSizeSection.count
+            let xxLargeSizeCount = imageListModel.xxLargeSizeSection.count
+            
+            let firstSectionCount = smallSizeCount
+            let secondSectionCount = firstSectionCount + largeSizeCount
+            let thirdSectionCount = secondSectionCount + xLargeSizeCount
+            let fourthSectionCount = thirdSectionCount + xLargeSizeCount
+            
+            if smallSizeCount > 0 && position < smallSizeCount  {
+                return SearchModel.Sections.FIRST
+            }
+            else if largeSizeCount > 0 && position < secondSectionCount  {
+                return SearchModel.Sections.SECOND
+            }
+            else if xLargeSizeCount > 0 && position < thirdSectionCount  {
+                return SearchModel.Sections.THIRD
+            }
+            else if xxLargeSizeCount > 0 &&  position < fourthSectionCount{
+                return SearchModel.Sections.FOURTH
+            }
+        }
+        return SearchModel.Sections.DEFAULT
     }
     
     // MARK: Protocols
@@ -210,37 +239,47 @@ extension SearchViewController: UICollectionViewDelegateFlowLayout, UICollection
         cell.backgroundColor = .gray
         var image = UIImage.init()
         if let imageListModel = imageListModel {
-            let smallSizeCount = imageListModel.smallSizeSection.count
-            let largeSizeCount = imageListModel.largeSizeSection.count
-            let xLargeSizeCount = imageListModel.xLargeSizeSection.count
-            let xxLargeSizeCount = imageListModel.xxLargeSizeSection.count
-            
-            let firstSectionCount = smallSizeCount
-            let secondSectionCount = firstSectionCount + largeSizeCount
-            let thirdSectionCount = secondSectionCount + xLargeSizeCount
-            let fourthSectionCount = thirdSectionCount + xLargeSizeCount
-
-
-            if smallSizeCount > 0 && indexPath.row < smallSizeCount  {
+            switch getSection(position: indexPath.row) {
+            case .FIRST:
                 image = imageListModel.smallSizeSection[indexPath.row]
-            }
-            else if largeSizeCount > 0 && indexPath.row < secondSectionCount  {
+            case .SECOND:
                 image = imageListModel.largeSizeSection[indexPath.row]
-            }
-            else if xLargeSizeCount > 0 && indexPath.row < thirdSectionCount  {
+            case .THIRD:
                 image = imageListModel.xLargeSizeSection[indexPath.row]
-            }
-            else if xxLargeSizeCount > 0 &&  indexPath.row < fourthSectionCount{
+            case .FOURTH:
                 image = imageListModel.xxLargeSizeSection[indexPath.row]
+            case .DEFAULT:
+                print("HATA! RESIM BULUNAMADI! SVC 252")
             }
-            
         }
+        
         cell.configureCell(screenshot: image)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        router?.routeToDetailPage(with: listViewModel[indexPath.row])
+        
+        var image = UIImage.init()
+        
+        if let imageListModel = imageListModel {
+            
+            switch indexPath.section {
+            case 0:
+                image = imageListModel.smallSizeSection[indexPath.row]
+            case 1:
+                image = imageListModel.largeSizeSection[indexPath.row]
+                
+            case 2:
+                image = imageListModel.xLargeSizeSection[indexPath.row]
+                
+            case 3:
+                image = imageListModel.xxLargeSizeSection[indexPath.row]
+                
+            default:
+                print("HATA! SVC 275!")
+            }
+        }
+        router?.routeToPreviewPage(with: image)
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -284,11 +323,11 @@ extension SearchViewController: UICollectionViewDelegateFlowLayout, UICollection
         default:
             headerText = ""
         }
-
+        
         header.label.text = headerText
         return header
     }
     
-
+    
 }
 

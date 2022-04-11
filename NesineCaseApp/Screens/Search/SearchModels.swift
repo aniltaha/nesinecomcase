@@ -36,4 +36,12 @@ enum SearchModel {
         case XLARGE_SIZE = 500000
         case XXLARGE_SIZE = 501000
     }
+    
+    enum Sections {
+        case FIRST
+        case SECOND
+        case THIRD
+        case FOURTH
+        case DEFAULT
+    }
 }
