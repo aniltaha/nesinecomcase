@@ -7,6 +7,7 @@ target 'NesineCaseApp' do
 
   # Pods for NesineCaseApp
   pod 'Kingfisher'
+  pod 'Alamofire'
 
   target 'NesineCaseAppTests' do
     inherit! :search_paths

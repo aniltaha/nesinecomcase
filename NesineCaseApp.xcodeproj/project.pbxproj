@@ -7,15 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		607FA0FE3F27CD606B7F5E0B /* Pods_NesineCaseApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 290D70E6EA0A02D94729A213 /* Pods_NesineCaseApp.framework */; };
 		6B2BEA7328019D5A00BD4A38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2BEA7228019D5A00BD4A38 /* AppDelegate.swift */; };
 		6B2BEA7528019D5A00BD4A38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2BEA7428019D5A00BD4A38 /* SceneDelegate.swift */; };
-		6B2BEA7728019D5A00BD4A38 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2BEA7628019D5A00BD4A38 /* ViewController.swift */; };
 		6B2BEA7A28019D5A00BD4A38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B2BEA7828019D5A00BD4A38 /* Main.storyboard */; };
 		6B2BEA7C28019D5A00BD4A38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B2BEA7B28019D5A00BD4A38 /* Assets.xcassets */; };
 		6B2BEA7F28019D5A00BD4A38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B2BEA7D28019D5A00BD4A38 /* LaunchScreen.storyboard */; };
 		6B2BEA8A28019D5B00BD4A38 /* NesineCaseAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2BEA8928019D5B00BD4A38 /* NesineCaseAppTests.swift */; };
 		6B2BEA9428019D5B00BD4A38 /* NesineCaseAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2BEA9328019D5B00BD4A38 /* NesineCaseAppUITests.swift */; };
 		6B2BEA9628019D5B00BD4A38 /* NesineCaseAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2BEA9528019D5B00BD4A38 /* NesineCaseAppUITestsLaunchTests.swift */; };
+		6B2BEAAD2801AB5A00BD4A38 /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2BEAA72801AB5A00BD4A38 /* SearchPresenter.swift */; };
+		6B2BEAAF2801AB5A00BD4A38 /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2BEAA92801AB5A00BD4A38 /* SearchRouter.swift */; };
+		6B2BEAB02801AB5A00BD4A38 /* SearchModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2BEAAA2801AB5A00BD4A38 /* SearchModels.swift */; };
+		6B2BEAB12801AB5A00BD4A38 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2BEAAB2801AB5A00BD4A38 /* SearchViewController.swift */; };
+		6B2BEAB22801AB5A00BD4A38 /* SearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2BEAAC2801AB5A00BD4A38 /* SearchInteractor.swift */; };
+		6B2BEAB52801B16800BD4A38 /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2BEAB42801B16800BD4A38 /* SearchCollectionViewCell.swift */; };
+		6B2BEAB82801B93500BD4A38 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2BEAB72801B93500BD4A38 /* NetworkManager.swift */; };
+		6B2BEABA2801C19500BD4A38 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2BEAB92801C19500BD4A38 /* StringExtension.swift */; };
+		6B62E6B12804C8E000B27F59 /* FileCategoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B62E6B02804C8E000B27F59 /* FileCategoryHeaderView.swift */; };
+		D0BA5E05EB522BD289295FC6 /* Pods_NesineCaseApp_NesineCaseAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9F3532D64B53A8836BA4C3C /* Pods_NesineCaseApp_NesineCaseAppUITests.framework */; };
+		FE8602318F5FF7A4A69D87FB /* Pods_NesineCaseAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA33B5716726782355E66630 /* Pods_NesineCaseAppTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,10 +47,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		290D70E6EA0A02D94729A213 /* Pods_NesineCaseApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NesineCaseApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		50ADC28F01FA90F223D25D9B /* Pods-NesineCaseApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NesineCaseApp.debug.xcconfig"; path = "Target Support Files/Pods-NesineCaseApp/Pods-NesineCaseApp.debug.xcconfig"; sourceTree = "<group>"; };
+		5515FBF629C30E6F83856AE3 /* Pods-NesineCaseApp-NesineCaseAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NesineCaseApp-NesineCaseAppUITests.release.xcconfig"; path = "Target Support Files/Pods-NesineCaseApp-NesineCaseAppUITests/Pods-NesineCaseApp-NesineCaseAppUITests.release.xcconfig"; sourceTree = "<group>"; };
+		5BD5AE56A49F3D42D2AA9442 /* Pods-NesineCaseApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NesineCaseApp.release.xcconfig"; path = "Target Support Files/Pods-NesineCaseApp/Pods-NesineCaseApp.release.xcconfig"; sourceTree = "<group>"; };
 		6B2BEA6F28019D5A00BD4A38 /* NesineCaseApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NesineCaseApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B2BEA7228019D5A00BD4A38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6B2BEA7428019D5A00BD4A38 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		6B2BEA7628019D5A00BD4A38 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		6B2BEA7928019D5A00BD4A38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6B2BEA7B28019D5A00BD4A38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6B2BEA7E28019D5A00BD4A38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +63,20 @@
 		6B2BEA8F28019D5B00BD4A38 /* NesineCaseAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NesineCaseAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B2BEA9328019D5B00BD4A38 /* NesineCaseAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NesineCaseAppUITests.swift; sourceTree = "<group>"; };
 		6B2BEA9528019D5B00BD4A38 /* NesineCaseAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NesineCaseAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		6B2BEAA72801AB5A00BD4A38 /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
+		6B2BEAA92801AB5A00BD4A38 /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
+		6B2BEAAA2801AB5A00BD4A38 /* SearchModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModels.swift; sourceTree = "<group>"; };
+		6B2BEAAB2801AB5A00BD4A38 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		6B2BEAAC2801AB5A00BD4A38 /* SearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInteractor.swift; sourceTree = "<group>"; };
+		6B2BEAB42801B16800BD4A38 /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
+		6B2BEAB72801B93500BD4A38 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		6B2BEAB92801C19500BD4A38 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		6B62E6B02804C8E000B27F59 /* FileCategoryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCategoryHeaderView.swift; sourceTree = "<group>"; };
+		7009EB980B2ACF8118BEB5D7 /* Pods-NesineCaseAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NesineCaseAppTests.release.xcconfig"; path = "Target Support Files/Pods-NesineCaseAppTests/Pods-NesineCaseAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		8B68C600136DE7514A7D136A /* Pods-NesineCaseApp-NesineCaseAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NesineCaseApp-NesineCaseAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-NesineCaseApp-NesineCaseAppUITests/Pods-NesineCaseApp-NesineCaseAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		A9F3532D64B53A8836BA4C3C /* Pods_NesineCaseApp_NesineCaseAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NesineCaseApp_NesineCaseAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA33B5716726782355E66630 /* Pods_NesineCaseAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NesineCaseAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E230511F2C178A100B2EB0BC /* Pods-NesineCaseAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NesineCaseAppTests.debug.xcconfig"; path = "Target Support Files/Pods-NesineCaseAppTests/Pods-NesineCaseAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				607FA0FE3F27CD606B7F5E0B /* Pods_NesineCaseApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE8602318F5FF7A4A69D87FB /* Pods_NesineCaseAppTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +100,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0BA5E05EB522BD289295FC6 /* Pods_NesineCaseApp_NesineCaseAppUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A798D822D8F05834E8298CB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				290D70E6EA0A02D94729A213 /* Pods_NesineCaseApp.framework */,
+				A9F3532D64B53A8836BA4C3C /* Pods_NesineCaseApp_NesineCaseAppUITests.framework */,
+				CA33B5716726782355E66630 /* Pods_NesineCaseAppTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		6B2BEA6628019D5A00BD4A38 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +124,8 @@
 				6B2BEA8828019D5B00BD4A38 /* NesineCaseAppTests */,
 				6B2BEA9228019D5B00BD4A38 /* NesineCaseAppUITests */,
 				6B2BEA7028019D5A00BD4A38 /* Products */,
+				B795F6391E66BFFC3C4C9BB2 /* Pods */,
+				2A798D822D8F05834E8298CB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,9 +142,11 @@
 		6B2BEA7128019D5A00BD4A38 /* NesineCaseApp */ = {
 			isa = PBXGroup;
 			children = (
-				6B2BEA7228019D5A00BD4A38 /* AppDelegate.swift */,
-				6B2BEA7428019D5A00BD4A38 /* SceneDelegate.swift */,
-				6B2BEA7628019D5A00BD4A38 /* ViewController.swift */,
+				6B2BEAB62801B92900BD4A38 /* Manager */,
+				6B2BEAB32801B12700BD4A38 /* Cells */,
+				6B2BEAA42801AA7700BD4A38 /* Extensions */,
+				6B2BEAA32801AA4000BD4A38 /* Common */,
+				6B2BEAA22801AA1800BD4A38 /* Screens */,
 				6B2BEA7828019D5A00BD4A38 /* Main.storyboard */,
 				6B2BEA7B28019D5A00BD4A38 /* Assets.xcassets */,
 				6B2BEA7D28019D5A00BD4A38 /* LaunchScreen.storyboard */,
@@ -127,6 +172,73 @@
 			path = NesineCaseAppUITests;
 			sourceTree = "<group>";
 		};
+		6B2BEAA22801AA1800BD4A38 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				6B2BEAA52801AAB500BD4A38 /* Search */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		6B2BEAA32801AA4000BD4A38 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				6B2BEA7428019D5A00BD4A38 /* SceneDelegate.swift */,
+				6B2BEA7228019D5A00BD4A38 /* AppDelegate.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		6B2BEAA42801AA7700BD4A38 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6B2BEAB92801C19500BD4A38 /* StringExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		6B2BEAA52801AAB500BD4A38 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				6B2BEAA72801AB5A00BD4A38 /* SearchPresenter.swift */,
+				6B2BEAA92801AB5A00BD4A38 /* SearchRouter.swift */,
+				6B2BEAAA2801AB5A00BD4A38 /* SearchModels.swift */,
+				6B2BEAAB2801AB5A00BD4A38 /* SearchViewController.swift */,
+				6B2BEAAC2801AB5A00BD4A38 /* SearchInteractor.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		6B2BEAB32801B12700BD4A38 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				6B2BEAB42801B16800BD4A38 /* SearchCollectionViewCell.swift */,
+				6B62E6B02804C8E000B27F59 /* FileCategoryHeaderView.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		6B2BEAB62801B92900BD4A38 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				6B2BEAB72801B93500BD4A38 /* NetworkManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		B795F6391E66BFFC3C4C9BB2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				50ADC28F01FA90F223D25D9B /* Pods-NesineCaseApp.debug.xcconfig */,
+				5BD5AE56A49F3D42D2AA9442 /* Pods-NesineCaseApp.release.xcconfig */,
+				8B68C600136DE7514A7D136A /* Pods-NesineCaseApp-NesineCaseAppUITests.debug.xcconfig */,
+				5515FBF629C30E6F83856AE3 /* Pods-NesineCaseApp-NesineCaseAppUITests.release.xcconfig */,
+				E230511F2C178A100B2EB0BC /* Pods-NesineCaseAppTests.debug.xcconfig */,
+				7009EB980B2ACF8118BEB5D7 /* Pods-NesineCaseAppTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -134,9 +246,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6B2BEA9928019D5B00BD4A38 /* Build configuration list for PBXNativeTarget "NesineCaseApp" */;
 			buildPhases = (
+				DC8C711445438423DD203AF3 /* [CP] Check Pods Manifest.lock */,
 				6B2BEA6B28019D5A00BD4A38 /* Sources */,
 				6B2BEA6C28019D5A00BD4A38 /* Frameworks */,
 				6B2BEA6D28019D5A00BD4A38 /* Resources */,
+				1A10C64BEF87D4447CD51BE7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -151,6 +265,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6B2BEA9C28019D5B00BD4A38 /* Build configuration list for PBXNativeTarget "NesineCaseAppTests" */;
 			buildPhases = (
+				F14EA8242EE5A6BE876E3378 /* [CP] Check Pods Manifest.lock */,
 				6B2BEA8128019D5B00BD4A38 /* Sources */,
 				6B2BEA8228019D5B00BD4A38 /* Frameworks */,
 				6B2BEA8328019D5B00BD4A38 /* Resources */,
@@ -169,9 +284,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6B2BEA9F28019D5B00BD4A38 /* Build configuration list for PBXNativeTarget "NesineCaseAppUITests" */;
 			buildPhases = (
+				462BD8C59C9FD383922D7C79 /* [CP] Check Pods Manifest.lock */,
 				6B2BEA8B28019D5B00BD4A38 /* Sources */,
 				6B2BEA8C28019D5B00BD4A38 /* Frameworks */,
 				6B2BEA8D28019D5B00BD4A38 /* Resources */,
+				EB2C8B1A46290C60E55D70AF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -253,14 +370,125 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1A10C64BEF87D4447CD51BE7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NesineCaseApp/Pods-NesineCaseApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NesineCaseApp/Pods-NesineCaseApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NesineCaseApp/Pods-NesineCaseApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		462BD8C59C9FD383922D7C79 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NesineCaseApp-NesineCaseAppUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DC8C711445438423DD203AF3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NesineCaseApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EB2C8B1A46290C60E55D70AF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NesineCaseApp-NesineCaseAppUITests/Pods-NesineCaseApp-NesineCaseAppUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NesineCaseApp-NesineCaseAppUITests/Pods-NesineCaseApp-NesineCaseAppUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NesineCaseApp-NesineCaseAppUITests/Pods-NesineCaseApp-NesineCaseAppUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F14EA8242EE5A6BE876E3378 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NesineCaseAppTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		6B2BEA6B28019D5A00BD4A38 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6B2BEA7728019D5A00BD4A38 /* ViewController.swift in Sources */,
+				6B2BEAB82801B93500BD4A38 /* NetworkManager.swift in Sources */,
 				6B2BEA7328019D5A00BD4A38 /* AppDelegate.swift in Sources */,
+				6B2BEABA2801C19500BD4A38 /* StringExtension.swift in Sources */,
+				6B2BEAB12801AB5A00BD4A38 /* SearchViewController.swift in Sources */,
+				6B2BEAB22801AB5A00BD4A38 /* SearchInteractor.swift in Sources */,
+				6B2BEAAF2801AB5A00BD4A38 /* SearchRouter.swift in Sources */,
+				6B62E6B12804C8E000B27F59 /* FileCategoryHeaderView.swift in Sources */,
 				6B2BEA7528019D5A00BD4A38 /* SceneDelegate.swift in Sources */,
+				6B2BEAAD2801AB5A00BD4A38 /* SearchPresenter.swift in Sources */,
+				6B2BEAB02801AB5A00BD4A38 /* SearchModels.swift in Sources */,
+				6B2BEAB52801B16800BD4A38 /* SearchCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,11 +662,13 @@
 		};
 		6B2BEA9A28019D5B00BD4A38 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50ADC28F01FA90F223D25D9B /* Pods-NesineCaseApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QKK25HS23Q;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NesineCaseApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -461,11 +691,13 @@
 		};
 		6B2BEA9B28019D5B00BD4A38 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5BD5AE56A49F3D42D2AA9442 /* Pods-NesineCaseApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QKK25HS23Q;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NesineCaseApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -488,6 +720,7 @@
 		};
 		6B2BEA9D28019D5B00BD4A38 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E230511F2C178A100B2EB0BC /* Pods-NesineCaseAppTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -512,6 +745,7 @@
 		};
 		6B2BEA9E28019D5B00BD4A38 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7009EB980B2ACF8118BEB5D7 /* Pods-NesineCaseAppTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -536,6 +770,7 @@
 		};
 		6B2BEAA028019D5B00BD4A38 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B68C600136DE7514A7D136A /* Pods-NesineCaseApp-NesineCaseAppUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -558,6 +793,7 @@
 		};
 		6B2BEAA128019D5B00BD4A38 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5515FBF629C30E6F83856AE3 /* Pods-NesineCaseApp-NesineCaseAppUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
