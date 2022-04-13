@@ -15,7 +15,6 @@ import Kingfisher
 
 protocol SearchBusinessLogic {
     func getSoftware(with searchText: String)
-    func getImages(with imageURL: [SearchModel.ResultModel])
 }
 
 protocol SearchDataStore {
@@ -43,7 +42,6 @@ class SearchInteractor: SearchBusinessLogic, SearchDataStore {
     
     func getImages(with resultModels: [SearchModel.ResultModel]) {
         
-        var uiImageList: [SearchModel.ImageModel]?
         var allUrls: [URL] = []
         var smallSizeSection: [UIImage] = []
         var largeSizeSection: [UIImage] = []

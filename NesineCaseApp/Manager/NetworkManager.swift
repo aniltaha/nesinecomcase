@@ -68,8 +68,6 @@ class NetworkManager {
         let queue = DispatchQueue(label: "com.anil.que")
         queue.async(execute: downloadDispatchWorkItem)
         pendingRequestWorkItem = downloadDispatchWorkItem
-//        DispatchQueue.global(qos: .utility).async {
-//
-//        }
+
     }
 }

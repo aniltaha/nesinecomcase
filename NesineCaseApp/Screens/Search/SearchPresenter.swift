@@ -14,25 +14,11 @@ import UIKit
 
 
 protocol SearchPresentationLogic: AnyObject {
-    func presentSoftware(response: SearchModel.Response)
     func presentSoftware(with imageModel: SearchModel.ImageModel)
 }
 
 final class SearchPresenter: SearchPresentationLogic {
     weak var viewController: SearchDisplayLogic?
-    
-    func presentSoftware(response: SearchModel.Response) {
-        
-        var listViewModel:[SearchModel.ResultModel] = []
-        
-        if let results = response.results {
-            results.forEach{ responseModel in
-                let resultModel = SearchModel.ResultModel.init(screenshotUrls: responseModel.screenshotUrls)
-                listViewModel.append(resultModel)
-            }
-        }
-        viewController?.displaySearchList(listViewModel: listViewModel)
-    }
     
     func presentSoftware(with imageModel: SearchModel.ImageModel) {
         viewController?.displaySearchList(imageListModel: imageModel)

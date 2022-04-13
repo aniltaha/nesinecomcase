@@ -14,7 +14,6 @@ import UIKit
 
 protocol SearchDisplayLogic: AnyObject
 {
-    func displaySearchList(listViewModel: [SearchModel.ResultModel])
     func displaySearchList(imageListModel: SearchModel.ImageModel)
     
 }
@@ -22,10 +21,11 @@ protocol SearchDisplayLogic: AnyObject
 class SearchViewController: UIViewController, SearchDisplayLogic {
     var interactor: SearchBusinessLogic?
     var router: (NSObjectProtocol & SearchRoutingLogic & SearchDataPassing)?
-    
+    private var activityView: UIActivityIndicatorView?
     private let searchController = UISearchController(searchResultsController: nil)
     private var listViewModel: [SearchModel.ResultModel] = []
     private var imageListModel: SearchModel.ImageModel?
+    private var previusString = ""
     let headerId = "headerId"
     let categoryHeaderId = "categoryHeaderId"
     
@@ -147,52 +147,29 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
         }
     }
     
-    private func getSection(position: Int) -> SearchModel.Sections {
-        
-        if let imageListModel = imageListModel {
-            let smallSizeCount = imageListModel.smallSizeSection.count
-            let largeSizeCount = imageListModel.largeSizeSection.count
-            let xLargeSizeCount = imageListModel.xLargeSizeSection.count
-            let xxLargeSizeCount = imageListModel.xxLargeSizeSection.count
-            
-            let firstSectionCount = smallSizeCount
-            let secondSectionCount = firstSectionCount + largeSizeCount
-            let thirdSectionCount = secondSectionCount + xLargeSizeCount
-            let fourthSectionCount = thirdSectionCount + xLargeSizeCount
-            
-            if smallSizeCount > 0 && position < smallSizeCount  {
-                return SearchModel.Sections.FIRST
-            }
-            else if largeSizeCount > 0 && position < secondSectionCount  {
-                return SearchModel.Sections.SECOND
-            }
-            else if xLargeSizeCount > 0 && position < thirdSectionCount  {
-                return SearchModel.Sections.THIRD
-            }
-            else if xxLargeSizeCount > 0 &&  position < fourthSectionCount{
-                return SearchModel.Sections.FOURTH
-            }
-        }
-        return SearchModel.Sections.DEFAULT
-    }
-    
     // MARK: Protocols
-    
-    func displaySearchList(listViewModel: [SearchModel.ResultModel]) {
-        self.listViewModel = listViewModel
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
-            self.collectionView.layoutIfNeeded()
-
-        }
-    }
-    
+        
     func displaySearchList(imageListModel: SearchModel.ImageModel) {
         self.imageListModel = imageListModel
         DispatchQueue.main.async {
+            self.hideActivityIndicator()
             self.collectionView.reloadData()
             self.collectionView.layoutIfNeeded()
 
+        }
+    }
+    
+    // MARK: Func
+    func showActivityIndicator() {
+        activityView = UIActivityIndicatorView(style: .large)
+        activityView?.center = self.view.center
+        self.view.addSubview(activityView!)
+        activityView?.startAnimating()
+    }
+
+    func hideActivityIndicator(){
+        if (activityView != nil){
+            activityView?.stopAnimating()
         }
     }
 }
@@ -202,6 +179,11 @@ extension SearchViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let searchBar: UISearchBar = searchController.searchBar
         let searchText: String = searchBar.text ?? ""
+        hideActivityIndicator()
+        if previusString == searchText {
+            return
+        }
+        previusString = searchText
         if searchText.count <= 2 {
             DispatchQueue.main.async {
                 self.imageListModel?.smallSizeSection.removeAll()
@@ -210,10 +192,10 @@ extension SearchViewController: UISearchResultsUpdating {
                 self.imageListModel?.xxLargeSizeSection.removeAll()
                 self.collectionView.reloadData()
                 self.collectionView.layoutIfNeeded()
-
             }
             return
         }
+        showActivityIndicator()
         interactor?.getSoftware(with: searchText)
     }
 }

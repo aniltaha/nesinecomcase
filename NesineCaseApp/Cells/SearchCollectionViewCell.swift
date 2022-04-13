@@ -38,22 +38,8 @@ class SearchCollectionViewCell: UICollectionViewCell {
 
         
     }
-    
-//    func configureCell(screenshotUrls: String){
-//        let imageUrl = URL(string: screenshotUrls)
-//        image.kf.setImage(with: imageUrl, completionHandler: {result in
-//            try? result.get().image.pngData()
-//        })
     func configureCell(screenshot: UIImage){
-//        let imageUrl = URL(string: screenshotUrls)
         image.image = screenshot
-//        image.kf.setImage(with: imageUrl, completionHandler: {result in
-//            try? result.get().image.pngData()
-//        })
-
-//        collectionName.text =  album.collectionName
-//        releaseDate.text = album.releaseDate?.toDate()?.toString()
-//        collectionPrice.text =  String(format:"%.2f", album.collectionPrice ?? "Free")
     }
     
 }
