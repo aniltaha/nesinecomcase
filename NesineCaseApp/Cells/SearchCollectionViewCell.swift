@@ -39,7 +39,10 @@ class SearchCollectionViewCell: UICollectionViewCell {
         
     }
     func configureCell(screenshot: UIImage){
-        image.image = screenshot
+        DispatchQueue.main.async { [weak self] in
+            self?.image.image = screenshot
+
+        }
     }
     
 }

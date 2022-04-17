@@ -14,14 +14,14 @@ import UIKit
 
 
 protocol SearchPresentationLogic: AnyObject {
-    func presentSoftware(with imageModel: SearchModel.ImageModel)
+    func presentEmptySoftware()
 }
 
 final class SearchPresenter: SearchPresentationLogic {
     weak var viewController: SearchDisplayLogic?
     
-    func presentSoftware(with imageModel: SearchModel.ImageModel) {
-        viewController?.displaySearchList(imageListModel: imageModel)
+    func presentEmptySoftware() {
+        viewController?.displayEmptySearchList()
     }
     
 }

@@ -15,9 +15,11 @@ class NetworkManager {
     
     static let shared = NetworkManager()
     
-    private var pendingRequestWorkItem: DispatchWorkItem?
-
-    private init(){}
+    let queue = OperationQueue()
+    
+    private init(){
+        queue.maxConcurrentOperationCount = 3
+    }
     
     func getSoftware(ofURL url:URL, callback:@escaping (SearchModel.Response?,Error?)->Void) {
         
@@ -34,40 +36,62 @@ class NetworkManager {
         }
     }
     
-    func downloadAllImages(_ urls: [URL], completion: @escaping ([UIImage]) -> Void) {
-        
-        pendingRequestWorkItem?.cancel()
-        
-        let downloadDispatchWorkItem = DispatchWorkItem(qos: .utility) {
-            let group = DispatchGroup()
-            let semaphore = DispatchSemaphore(value: 3)
-            var imageDictionary: [URL: UIImage] = [:]
-            for url in urls {
-                group.enter()
-                semaphore.wait()
-                KingfisherManager.shared.retrieveImage(with: url) { result in
-                    defer {
-                        semaphore.signal()
-                        group.leave()
-                    }
-                    switch result {
-                    case .failure(let error):
-                        print(error)
-                    case .success(let image):
-                        DispatchQueue.main.async {
-                            imageDictionary[url] = image.image
-                        }
-                    }
-                }
+    
+    func downloadImage(_ url: URL, completion: @escaping (UIImage) -> Void) {
+        var image = UIImage()
+        KingfisherManager.shared.retrieveImage(with: url) { result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let resultImage):
+                image = resultImage.image
+                completion(image)
             }
-            group.notify(queue: .main) {
-                completion(urls.compactMap { imageDictionary[$0] })
+        }
+    }
+    
+    //low performance a lot of request
+    func downloadImageOp(_ url: URL, completion: @escaping (UIImage) -> Void) {
+        queue.addOperation {
+            guard let data = try? Data(contentsOf: url),
+                  let image = UIImage(data: data) else {
+                      return
+                  }
+            completion(image)
+        }
+    }
+    
+    //good performance but a lot of requests no cache
+    func downloadImageOpUrl(_ url: URL, completion: @escaping (UIImage) -> Void) {
+        queue.addOperation {
+            URLSession.shared.dataTask(with: url) {
+                data, response, error in
+                
+                guard let data = data,
+                      let image = UIImage(data: data) else {
+                          return
+                      }
+                completion(image)
+            }.resume()
+        }
+    }
+    
+    //Cache and download images  good performance but hight memory usage
+    func downloadImageOpKing(_ url: URL, completion: @escaping (UIImage) -> Void) {
+        queue.addOperation {
+            KingfisherManager.shared.retrieveImage(with: url) { result in
+                switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let resultImage):
+                    completion(resultImage.image)
+                }
             }
         }
         
-        let queue = DispatchQueue(label: "com.anil.que")
-        queue.async(execute: downloadDispatchWorkItem)
-        pendingRequestWorkItem = downloadDispatchWorkItem
-
+    }
+    
+    func cancelTask() {
+        queue.cancelAllOperations()
     }
 }
