@@ -33,11 +33,13 @@ class SearchPresenterTests: XCTestCase {
     // MARK: Test doubles
     
     class SearchDisplayLogicSpy: SearchDisplayLogic {
-        var displaySearchListCalled = false
         
-        func displaySearchList(imageListModel: SearchModel.ImageModel) {
-            displaySearchListCalled = true
+        var displayEmptySearchListCalled = false
+        func displayEmptySearchList() {
+            displayEmptySearchListCalled = true
         }
+        
+        
     }
     
     // MARK: Tests
@@ -45,13 +47,8 @@ class SearchPresenterTests: XCTestCase {
         let spy = SearchDisplayLogicSpy()
         sut.viewController = spy
         
-        let imageListModel = SearchModel.ImageModel.init(smallSizeSection: [UIImage()],
-                                                         largeSizeSection: [UIImage()],
-                                                         xLargeSizeSection: [UIImage()],
-                                                         xxLargeSizeSection: [UIImage()])
-        
-        sut.presentSoftware(with: imageListModel)
-        XCTAssertTrue(spy.displaySearchListCalled)
+        sut.presentEmptySoftware()
+        XCTAssertTrue(spy.displayEmptySearchListCalled)
     }
     
     

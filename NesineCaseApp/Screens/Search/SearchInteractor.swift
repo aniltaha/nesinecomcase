@@ -28,12 +28,14 @@ class SearchInteractor: SearchBusinessLogic, SearchDataStore {
     
     func getSoftware(with searchText: String) {
         let query: String = "term=" + searchText.toBaseUrlQuery() + "&media=software"
-        let endPointUrl = URL(string: BASE_URL + query)
+        let endPointUrl = URL(string: BASE_URL + query.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!)
+        
+        KingfisherManager.shared.cache.clearMemoryCache()
+        KingfisherManager.shared.cache.clearDiskCache()
         
         if let endPointUrl = endPointUrl {
             NetworkManager.shared.getSoftware(ofURL: endPointUrl, callback: {[weak self] (response, error) in
                 if let response = response, let results = response.results {
-                    //                    self?.presenter?.presentSoftware(response: response)
                     self?.getImages(with: results)
                 }
             })
@@ -43,39 +45,35 @@ class SearchInteractor: SearchBusinessLogic, SearchDataStore {
     func getImages(with resultModels: [SearchModel.ResultModel]) {
         
         var allUrls: [URL] = []
-        var smallSizeSection: [UIImage] = []
-        var largeSizeSection: [UIImage] = []
-        var xLargeSizeSection: [UIImage] = []
-        var xxLargeSizeSection: [UIImage] = []
-        
         for resulModel in resultModels {
             let urls: [URL]? = resulModel.screenshotUrls?.map{ URL(string: $0)!}
             allUrls.append(contentsOf: urls!)
         }
-        NetworkManager.shared.downloadAllImages(allUrls) {[weak self] images in
-            images.forEach { image in
+        allUrls.forEach { url in
+            NetworkManager.shared.downloadImageOpKing(url) { image in
+                
                 if let imagePngData = image.pngData() {
+                    var updatedItem: [String: Any] = [:]
+                    updatedItem["image"] = image
                     let imageSize = imagePngData.count
                     if imageSize > SearchModel.ImageSizeType.XLARGE_SIZE.rawValue {
-                        xxLargeSizeSection.append(image)
+                        updatedItem["type"] = "xxlarge"
                     }
                     else if imageSize > SearchModel.ImageSizeType.LARGE_SIZE.rawValue {
-                        xLargeSizeSection.append(image)
+                        updatedItem["type"] = "xlarge"
                     }
                     else if imageSize > SearchModel.ImageSizeType.SMALL_SIZE.rawValue {
-                        largeSizeSection.append(image)
+                        updatedItem["type"] = "large"
                     }else {
-                        smallSizeSection.append(image)
+                        updatedItem["type"] = "small"
                     }
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "complatedImage"), object: nil, userInfo: updatedItem)
                 }
             }
-            let imageModel = SearchModel.ImageModel.init(smallSizeSection: smallSizeSection,
-                                                         largeSizeSection: largeSizeSection,
-                                                         xLargeSizeSection: xLargeSizeSection,
-                                                         xxLargeSizeSection: xxLargeSizeSection)
-            self?.presenter?.presentSoftware(with: imageModel)
+        }
+        if (allUrls.isEmpty) {
+            self.presenter?.presentEmptySoftware()
         }
     }
-    
 }
 

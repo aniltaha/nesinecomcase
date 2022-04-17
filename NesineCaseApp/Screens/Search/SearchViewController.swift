@@ -14,8 +14,7 @@ import UIKit
 
 protocol SearchDisplayLogic: AnyObject
 {
-    func displaySearchList(imageListModel: SearchModel.ImageModel)
-    
+    func displayEmptySearchList()
 }
 
 class SearchViewController: UIViewController, SearchDisplayLogic {
@@ -28,6 +27,11 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     private var previusString = ""
     let headerId = "headerId"
     let categoryHeaderId = "categoryHeaderId"
+    
+    var smallIndex = 0
+    var largeIndex = 0
+    var xlargeIndex = 0
+    var xxlargeIndex = 0
     
     fileprivate let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -65,9 +69,6 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
         return section
     }
     
-    
-    
-    
     // MARK: Object lifecycle
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -100,15 +101,17 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        imageListModel = SearchModel.ImageModel.init(smallSizeSection: [], largeSizeSection: [], xLargeSizeSection: [], xxLargeSizeSection: [])
         setupUISearchController()
         setupCollectionView()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.receiveData(_:)), name: NSNotification.Name(rawValue: "complatedImage"), object: nil)
     }
     
     // MARK: Setup UI Elements
     
     func setupUISearchController() {
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
         searchController.searchBar.autocapitalizationType = .none
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
@@ -129,7 +132,6 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
                                                constant: -20).isActive = true
         collectionView.collectionViewLayout = createCompositionalLayout()
         
-        
         collectionView.delegate = self
         collectionView.dataSource = self
     }
@@ -139,26 +141,32 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
         return UICollectionViewCompositionalLayout { (sectionNumber, env) -> NSCollectionLayoutSection? in
             
             switch sectionNumber {
-                
             case 0: return self.secondLayoutSection()
             case 1: return self.secondLayoutSection()
             default: return self.secondLayoutSection()
             }
         }
     }
+   
     
     // MARK: Protocols
-        
-    func displaySearchList(imageListModel: SearchModel.ImageModel) {
-        self.imageListModel = imageListModel
-        DispatchQueue.main.async {
-            self.hideActivityIndicator()
-            self.collectionView.reloadData()
-            self.collectionView.layoutIfNeeded()
 
+    func displayEmptySearchList() {
+        DispatchQueue.main.async { [weak self] in
+            self?.smallIndex = 0
+            self?.largeIndex = 0
+            self?.xlargeIndex = 0
+            self?.xxlargeIndex = 0
+            self?.imageListModel?.smallSizeSection.removeAll()
+            self?.imageListModel?.largeSizeSection.removeAll()
+            self?.imageListModel?.xLargeSizeSection.removeAll()
+            self?.imageListModel?.xxLargeSizeSection.removeAll()
+            
+            self?.hideActivityIndicator()
+            self?.collectionView.reloadData()
+            self?.collectionView.layoutIfNeeded()
         }
     }
-    
     // MARK: Func
     func showActivityIndicator() {
         activityView = UIActivityIndicatorView(style: .large)
@@ -166,30 +174,81 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
         self.view.addSubview(activityView!)
         activityView?.startAnimating()
     }
-
+    
     func hideActivityIndicator(){
         if (activityView != nil){
             activityView?.stopAnimating()
         }
     }
+    //Gereğinden uzun bir body var bu fonksiyonda
+    @objc
+    func receiveData(_ notification: NSNotification) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {return}
+            if let imageType = notification.userInfo?["type"] as? String,
+               let image  = notification.userInfo?["image"] as? UIImage  {
+                var section = 0
+                var row = 0
+                if self.smallIndex == 0 &&
+                    self.largeIndex == 0 &&
+                    self.xlargeIndex == 0 &&
+                    self.xxlargeIndex == 0 {
+                    self.collectionView.reloadData()
+                }
+                switch imageType {
+                case "small":
+                    row = self.smallIndex
+                    self.imageListModel?.smallSizeSection.append(image)
+                    section = 0
+                    self.smallIndex += 1
+                case "large":
+                    row = self.largeIndex
+                    self.imageListModel?.largeSizeSection.append(image)
+                    section = 1
+                    self.largeIndex += 1
+                case "xlarge":
+                    row = self.xlargeIndex
+                    self.imageListModel?.xLargeSizeSection.append(image)
+                    section = 2
+                    self.xlargeIndex += 1
+                case "xxlarge":
+                    row = self.xxlargeIndex
+                    self.imageListModel?.xxLargeSizeSection.append(image)
+                    section = 3
+                    self.xxlargeIndex += 1
+                default:
+                    print("Error")
+                }
+                self.hideActivityIndicator()
+                self.collectionView.insertItems(at: [IndexPath(row: row,section: section)])
+                self.collectionView.layoutIfNeeded()
+            }
+        }
+    }
 }
 
-extension SearchViewController: UISearchResultsUpdating {
+extension SearchViewController: UISearchBarDelegate {
     
-    func updateSearchResults(for searchController: UISearchController) {
-        let searchBar: UISearchBar = searchController.searchBar
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         let searchText: String = searchBar.text ?? ""
         hideActivityIndicator()
+        NetworkManager.shared.cancelTask()
         if previusString == searchText {
             return
+        }
+        DispatchQueue.main.async { [weak self] in
+            self?.smallIndex = 0
+            self?.largeIndex = 0
+            self?.xlargeIndex = 0
+            self?.xxlargeIndex = 0
+            self?.imageListModel?.smallSizeSection.removeAll()
+            self?.imageListModel?.largeSizeSection.removeAll()
+            self?.imageListModel?.xLargeSizeSection.removeAll()
+            self?.imageListModel?.xxLargeSizeSection.removeAll()
         }
         previusString = searchText
         if searchText.count <= 2 {
             DispatchQueue.main.async {
-                self.imageListModel?.smallSizeSection.removeAll()
-                self.imageListModel?.largeSizeSection.removeAll()
-                self.imageListModel?.xLargeSizeSection.removeAll()
-                self.imageListModel?.xxLargeSizeSection.removeAll()
                 self.collectionView.reloadData()
                 self.collectionView.layoutIfNeeded()
             }
@@ -208,15 +267,14 @@ extension SearchViewController: UICollectionViewDelegateFlowLayout, UICollection
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
-            
         case 0:
-            return imageListModel?.smallSizeSection.count ?? 0
+            return smallIndex
         case 1:
-            return imageListModel?.largeSizeSection.count ?? 0
+            return largeIndex
         case 2:
-            return imageListModel?.xLargeSizeSection.count ?? 0
+            return xlargeIndex
         case 3:
-            return imageListModel?.xxLargeSizeSection.count ?? 0
+            return xxlargeIndex
         default:
             return 0
         }
@@ -240,17 +298,13 @@ extension SearchViewController: UICollectionViewDelegateFlowLayout, UICollection
                 print("HATA! RESIM BULUNAMADI! SVC 252")
             }
         }
-        
         cell.configureCell(screenshot: image)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         var image = UIImage.init()
-        
         if let imageListModel = imageListModel {
-            
             switch indexPath.section {
             case 0:
                 image = imageListModel.smallSizeSection[indexPath.row]
@@ -298,7 +352,6 @@ extension SearchViewController: UICollectionViewDelegateFlowLayout, UICollection
             header.label.text = ""
             return header
         }
-        
         switch indexPath.section {
         case 0:
             headerText = "0-100"
@@ -311,7 +364,6 @@ extension SearchViewController: UICollectionViewDelegateFlowLayout, UICollection
         default:
             headerText = ""
         }
-        
         header.label.text = headerText
         return header
     }

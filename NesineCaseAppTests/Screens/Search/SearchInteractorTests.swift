@@ -34,13 +34,32 @@ class SearchInteractorTests: XCTestCase
     // MARK: Test doubles
     
     class SearchPresentationLogicSpy: SearchPresentationLogic {
-        var presentSoftwareCalled = false
         
-        func presentSoftware(with imageModel: SearchModel.ImageModel) {
-            presentSoftwareCalled = true
+        var presentEmptySoftwareCalled = false
+        
+        func presentEmptySoftware() {
+            presentEmptySoftwareCalled = true
         }
     }
     // MARK: Tests
+    func testPresentSoftwareEmpty() {
+        let spy = SearchPresentationLogicSpy()
+        sut.presenter = spy
+        
+        let predicate = NSPredicate(block: {any, _ in
+            guard let spy = any as? SearchPresentationLogicSpy else {
+                return false
+            }
+            XCTAssertTrue(spy.presentEmptySoftwareCalled)
+            return spy.presentEmptySoftwareCalled
+        })
+        _ = self.expectation(for: predicate, evaluatedWith: spy, handler: .none)
+        
+        sut.getSoftware(with: "nesinecom")
+        
+        waitForExpectations(timeout: 15, handler: .none)
+    }
+    
     func testPresentSoftware() {
         let spy = SearchPresentationLogicSpy()
         sut.presenter = spy
@@ -49,8 +68,8 @@ class SearchInteractorTests: XCTestCase
             guard let spy = any as? SearchPresentationLogicSpy else {
                 return false
             }
-            XCTAssertTrue(spy.presentSoftwareCalled)
-            return spy.presentSoftwareCalled
+            XCTAssertFalse(spy.presentEmptySoftwareCalled)
+            return !spy.presentEmptySoftwareCalled
         })
         _ = self.expectation(for: predicate, evaluatedWith: spy, handler: .none)
         

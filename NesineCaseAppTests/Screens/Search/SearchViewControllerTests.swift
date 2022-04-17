@@ -57,7 +57,7 @@ class SearchViewControllerTests: XCTestCase {
         searchController.searchBar.text = "asdd"
         sut.interactor = spy
         sut.viewDidLoad()
-        sut.updateSearchResults(for: searchController)
+        sut.searchBarTextDidEndEditing(searchController.searchBar)
         
         XCTAssertTrue(spy.getSoftwareCalled)
         
@@ -69,15 +69,16 @@ class SearchViewControllerTests: XCTestCase {
         searchController.searchBar.text = "as"
         sut.interactor = spy
         sut.viewDidLoad()
-        sut.updateSearchResults(for: searchController)
-        
+        sut.searchBarTextDidEndEditing(searchController.searchBar)
         XCTAssertFalse(spy.getSoftwareCalled)
     }
     
     func testDisplaySearchList() {
         let defaultImage = UIImage.init(named: "Default")!
-        let imageModel = SearchModel.ImageModel.init(smallSizeSection: [defaultImage], largeSizeSection: [defaultImage], xLargeSizeSection: [defaultImage], xxLargeSizeSection: [defaultImage])
-        sut.displaySearchList(imageListModel: imageModel)
+        var updatedItem: [String: Any] = [:]
+        updatedItem["image"] = defaultImage
+        updatedItem["type"] = "small"
+        sut.receiveData(NSNotification.init(name: NSNotification.Name(rawValue: "complatedImage"), object: nil, userInfo: updatedItem))
 
     }
     
